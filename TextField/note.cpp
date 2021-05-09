@@ -1,6 +1,19 @@
 
-#include "note.h"
+#include <QDate>
+#include <QDebug>
+#include <QDir>
+#include <QTextStream>
 #include <QtWidgets>
+
+#include <QDir>
+#include <QList>
+#include <QStringList>
+
+#include "note.h"
+#include "qtcsv/reader.h"
+#include "qtcsv/stringdata.h"
+#include "qtcsv/variantdata.h"
+#include "qtcsv/writer.h"
 Note::Note(QWidget* parent) : QDialog(parent)
 {
     setupUi(this);
