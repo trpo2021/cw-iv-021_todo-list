@@ -10,6 +10,7 @@ public:
     Note(QWidget* parent = 0);
 private slots:
     void on_textEdit_textChanged();
+    void on_deadline_currentIndexChanged(int index);
 };
 
 #endif // NOTE_H

@@ -14,3 +14,11 @@ void Note::on_textEdit_textChanged()
         saveButton->setEnabled(false);
     }
 }
+void Note::on_deadline_currentIndexChanged(int index)
+{
+    if (index == 1) {
+        dead_time->setEnabled(true);
+    } else {
+        dead_time->setEnabled(false);
+    }
+}
