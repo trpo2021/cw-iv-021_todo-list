@@ -79,7 +79,6 @@ public:
         sizePolicy.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
         pushButton->setSizePolicy(sizePolicy);
         pushButton->setMinimumSize(QSize(95, 0));
-        pushButton->setEnabled(false);
 
         gridLayout->addWidget(pushButton, 1, 3, 1, 1);
 
