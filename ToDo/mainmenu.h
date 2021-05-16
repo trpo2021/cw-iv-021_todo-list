@@ -37,14 +37,13 @@ public:
     QComboBox *status;
     QGridLayout *gridLayout_2;
     QTableWidget *table;
-    QPushButton *edit;
     QPushButton *create;
 
     void setupUi(QWidget *mainMenu)
     {
         if (mainMenu->objectName().isEmpty())
             mainMenu->setObjectName(QString::fromUtf8("mainMenu"));
-        mainMenu->resize(1026, 896);
+        mainMenu->resize(1030, 896);
         gridLayout_3 = new QGridLayout(mainMenu);
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
         gridLayout = new QGridLayout();
@@ -98,7 +97,6 @@ public:
         sizePolicy.setHeightForWidth(search->sizePolicy().hasHeightForWidth());
         search->setSizePolicy(sizePolicy);
         search->setMinimumSize(QSize(95, 0));
-        search->setEnabled(false);
 
         gridLayout->addWidget(search, 1, 4, 1, 1);
 
@@ -159,14 +157,6 @@ public:
 
         gridLayout_2->addWidget(table, 0, 0, 1, 2, Qt::AlignHCenter);
 
-        edit = new QPushButton(mainMenu);
-        edit->setObjectName(QString::fromUtf8("edit"));
-        sizePolicy.setHeightForWidth(edit->sizePolicy().hasHeightForWidth());
-        edit->setSizePolicy(sizePolicy);
-        edit->setMinimumSize(QSize(95, 0));
-
-        gridLayout_2->addWidget(edit, 1, 0, 1, 1);
-
         create = new QPushButton(mainMenu);
         create->setObjectName(QString::fromUtf8("create"));
         sizePolicy.setHeightForWidth(create->sizePolicy().hasHeightForWidth());
@@ -211,7 +201,6 @@ public:
         ___qtablewidgetitem3->setText(QApplication::translate("mainMenu", "\320\224\320\260\321\202\320\260 \321\201\320\276\320\267\320\264\320\260\320\275\320\270\321\217", nullptr));
         QTableWidgetItem *___qtablewidgetitem4 = table->horizontalHeaderItem(4);
         ___qtablewidgetitem4->setText(QApplication::translate("mainMenu", "\320\242\320\265\320\272\321\201\321\202", nullptr));
-        edit->setText(QApplication::translate("mainMenu", "\320\240\320\265\320\264\320\260\320\272\321\202\320\270\321\200\320\276\320\262\320\260\321\202\321\214", nullptr));
         create->setText(QApplication::translate("mainMenu", "\320\241\320\276\320\267\320\264\320\260\321\202\321\214", nullptr));
     } // retranslateUi
 

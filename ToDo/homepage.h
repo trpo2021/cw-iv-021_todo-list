@@ -10,13 +10,13 @@ class Homepage : public QDialog, public Ui::mainMenu
 public:
     Homepage(QWidget *parent = 0);
 signals:
-    void redact_me(QString data);
-
+    void redact_me(QStringList data);
+public slots:
+    void take_info(int row,int col);
 private slots:
     void on_searchLine_textChanged();
     void on_create_clicked();
-private:
-    //Note* Notemenu;
+
 
 };
 

@@ -1,0 +1,4 @@
+/home/pavel/build-MainMenu-Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/pavel/build-MainMenu-Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/pavel/build-MainMenu-Desktop-Debug/CMakeFiles/MainMenu.dir
+/home/pavel/build-MainMenu-Desktop-Debug/CMakeFiles/MainMenu_autogen.dir

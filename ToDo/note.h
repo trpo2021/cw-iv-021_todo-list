@@ -11,15 +11,16 @@ class Note : public QDialog, public Ui_Form {
 public:
     Note(QWidget* parent = 0);
     bool redact_state = false;
-
+    bool dead_state = false;
 public slots:
-    void redact(QString data);
+    void redact(QStringList data);
 private:
     QString created;
-    class RevertProcessor : public QtCSV::Reader::AbstractProcessor
+    class EditProcessor : public QtCSV::Reader::AbstractProcessor
         {
         public:
             QList< QStringList > data;
+
 
             virtual void preProcessRawLine(QString& line)
             {
