@@ -47,7 +47,7 @@ public:
     {
         if (Form->objectName().isEmpty())
             Form->setObjectName(QString::fromUtf8("Form"));
-        Form->resize(860, 878);
+        Form->resize(1295, 913);
         gridLayout_2 = new QGridLayout(Form);
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         verticalLayout = new QVBoxLayout();
@@ -153,7 +153,7 @@ public:
         retranslateUi(Form);
 
         priority->setCurrentIndex(0);
-        deadline->setCurrentIndex(1);
+        deadline->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(Form);
