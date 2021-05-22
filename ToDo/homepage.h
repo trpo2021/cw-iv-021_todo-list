@@ -4,10 +4,12 @@
 #include <QDialog>
 #include "ui_main.h"
 #include "note.h"
-class Homepage : public QDialog, public Ui::mainmenu{
+#include "todofile.h"
+class Homepage : public QDialog, public Ui::mainMenu{
     Q_OBJECT
 public:
     Homepage(QWidget *parent = 0);
+    ToDoFile Read;
 signals:
     void redact_me(QStringList data);
 public slots:

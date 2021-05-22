@@ -49,3 +49,9 @@ int ToDoFile::edit_csv(QString filepath, QStringList data, QString created, QStr
     }
     return 1;
 }
+int ToDoFile::read_csv(QString filepath, QList<QStringList> *readData, QString sep, QString delim){
+     *readData = QtCSV::Reader::readToList(filepath,sep,delim,QTextCodec::codecForName("UTF-8"));
+    if (readData->size()>0){
+        return 1;
+    }return 0;
+}
