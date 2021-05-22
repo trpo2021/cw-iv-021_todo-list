@@ -20,13 +20,13 @@ private:
         {
         public:
             QList< QStringList > data;
-
-
+            QString created;
+            QString edStr;
             virtual void preProcessRawLine(QString& line)
             {
-                if (line.isEmpty())
+                if (line.contains(created))
                 {
-                    line = "Say 'No' to empty lines!";
+                    line = edStr;
                 }
             }
 

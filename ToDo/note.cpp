@@ -10,10 +10,7 @@
 #include <QStringList>
 
 #include "note.h"
-#include "qtcsv/reader.h"
-#include "qtcsv/stringdata.h"
-#include "qtcsv/variantdata.h"
-#include "qtcsv/writer.h"
+#include "todofile.h"
 #include "homepage.h"
 Note::Note(QWidget* parent) : QDialog(parent)
 {
@@ -53,43 +50,23 @@ void Note::on_saveButton_clicked()
         created = cdt.toString(Qt::ISODate);
         QStringList notedat;
         notedat << status << deadline_str << prior << created << note_text;
-        QtCSV::StringData strDat;
-        strDat.addRow(notedat);
-
-        QtCSV::Writer::write(
-               filePath,
-               strDat,
-               ";",
-               "\"",
-               QtCSV::Writer::WriteMode::APPEND,
-               QStringList(),
-               QStringList(),
-               QTextCodec::codecForName("UTF-8"));
+        ToDoFile writer;
+        if(writer.write_csv(filePath,notedat,";","\"") == 0){
+            qDebug()<<"Writing Error";
+        }
     }else if(redact_state == true){
 
         EditProcessor processor;
+        processor.created = created;
+        processor.edStr = status +";"+deadline_str +";"+
+                prior +";"+created +";"+note_text+"\n";
         QString filePath = QDir::currentPath() + "/base.csv";
         if (false == QtCSV::Reader::readToProcessor(filePath, processor))
             {
                 qDebug() << "Failed to read file";
                 return;
             }
-        QFile file("base.csv");
-        file.open(QIODevice::WriteOnly|QIODevice::Text);
-        QTextStream writeStream(&file);
-        writeStream.setCodec("UTF-8");
-        for ( int i = 0; i < processor.data.size(); ++i )
-            {
-                qDebug() << created;
-                if (processor.data.at(i).join(",").contains(created)== true){
-                    QString edStr = status +";"+deadline_str +";"+
-                            prior +";"+created +";"+note_text+"\n";
-                    writeStream<<edStr;
-                }else{
-                    writeStream<<processor.data.at(i).join(",")<<"\n";
-                }
-            }
-        file.close();
+
 
     }
 
@@ -106,6 +83,7 @@ void Note::redact(QStringList data){
     redact_state = true;
 
     if(!(data[1] == "Нет")){
+        dead_time->setEnabled(false);
         deadline->setCurrentIndex(1);
         dead_time->setDateTime(
                     QDateTime::fromString(data[1], Qt::ISODate));
@@ -119,7 +97,7 @@ void Note::redact(QStringList data){
 
 void Note::on_deadline_currentIndexChanged(int index)
 {
-    if ((index == 1)||(dead_state == true)) {
+    if (index == 1) {
         dead_time->setEnabled(true);
     } else {
         dead_time->setEnabled(false);

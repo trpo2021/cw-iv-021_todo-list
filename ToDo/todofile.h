@@ -1,0 +1,17 @@
+#ifndef TODOFILE_H
+#define TODOFILE_H
+#include <QString>
+#include "qtcsv/stringdata.h"
+#include "qtcsv/variantdata.h"
+#include "qtcsv/writer.h"
+#include "qtcsv/reader.h"
+class ToDoFile
+{
+public:
+    ToDoFile();
+    int write_csv(QString filepath,QStringList data,QString sep,QString delim);
+    int edit_csv(QString filepath,QString created,QString ed);
+    int read_csv(QString filepath,QStringList readData,QString sep,QString delim);
+};
+
+#endif // TODOFILE_H

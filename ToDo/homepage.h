@@ -2,10 +2,9 @@
 #define HOMEPAGE_H
 
 #include <QDialog>
-#include "mainmenu.h"
+#include "ui_main.h"
 #include "note.h"
-class Homepage : public QDialog, public Ui::mainMenu
-{
+class Homepage : public QDialog, public Ui::mainmenu{
     Q_OBJECT
 public:
     Homepage(QWidget *parent = 0);

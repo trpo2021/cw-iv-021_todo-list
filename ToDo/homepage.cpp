@@ -3,15 +3,15 @@
 #include <QDebug>
 #include <QtWidgets>
 #include "qtcsv/reader.h"
-
 Homepage::Homepage(QWidget *parent) : QDialog(parent)
 {
-    setupUi(this);
+    mainmenu::setupUi(this);
     this->setWindowFlags(Qt::WindowTitleHint);
     this->setAttribute(Qt::WA_DeleteOnClose,true);
     connect(table,SIGNAL(cellDoubleClicked(int, int)),this,SLOT(take_info(int, int )));
     QString filePath = QDir::currentPath() + "/base.csv";
-    QList<QStringList> readData = QtCSV::Reader::readToList(filePath,";","\"",QTextCodec::codecForName("UTF-8"));
+    QList<QStringList> readData = QtCSV::Reader::readToList(filePath,";","\"",
+                                                            QTextCodec::codecForName("UTF-8"));
         for ( int i = 1; i < readData.size(); ++i )
         {
             QString data = readData.at(i).join(";");
