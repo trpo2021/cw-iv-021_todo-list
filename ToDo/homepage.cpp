@@ -1,30 +1,21 @@
 #include "homepage.h"
+#include "todofile.h"
 #include "note.h"
 #include <QDebug>
 #include <QtWidgets>
 #include "qtcsv/reader.h"
 Homepage::Homepage(QWidget *parent) : QDialog(parent)
 {
-    mainmenu::setupUi(this);
+    mainMenu::setupUi(this);
     this->setWindowFlags(Qt::WindowTitleHint);
     this->setAttribute(Qt::WA_DeleteOnClose,true);
+    time =new QTimer(this);
+    table->setEditTriggers(0);
+    update_table_ui();
+    connect(table,SIGNAL(cellDoubleClicked(int, int)),this,SLOT(take_info(int, int )));
+    connect(time, SIGNAL(timeout()), this, SLOT(update_table_ui()));
+    time->start(1000);
 
-    QString filePath = QDir::currentPath() + "/base.csv";
-    QList<QStringList> readData = QtCSV::Reader::readToList(filePath,";","\"",QTextCodec::codecForName("UTF-8"));
-        for ( int i = 1; i < readData.size(); ++i )
-        {
-            QString data = readData.at(i).join(";");
-            QStringList list;
-            list = data.split(";");
-            table->insertRow(i-1);
-
-            for (int j = 0; j < 5; j++){
-                QTableWidgetItem *cell = new QTableWidgetItem;
-                cell->setText(list.at(j));
-                table->setItem(i-1,j,cell);
-             }
-        }
-        connect(table,SIGNAL(cellDoubleClicked(int, int)),this,SLOT(take_info(int, int )));
 }
 
 
@@ -57,5 +48,25 @@ void Homepage::take_info(int row,int col){
     emit redact_me(data);
     Notemenu->show();
     this->close();
+
+}
+void Homepage::update_table_ui(){
+    QString filePath = QDir::currentPath() + "/base.csv";
+    QList<QStringList> readData;
+    Read.read_csv(filePath,&readData,";","\"");
+        for ( int i = 1; i < readData.size(); ++i )
+        {
+            QString data = readData.at(i).join(";");
+            QStringList list;
+            list = data.split(";");
+            if(table->rowCount()<i){
+                table->insertRow(i-1);
+             }
+            for (int j = 0; j < 5; j++){
+                QTableWidgetItem *cell = new QTableWidgetItem;
+                cell->setText(list.at(j));
+                table->setItem(i-1,j,cell);
+             }
+        }
 
 }
