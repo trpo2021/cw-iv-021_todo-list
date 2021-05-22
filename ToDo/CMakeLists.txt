@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-find_library(CSV_LIBRARY libqtcsv.so)
+
 project(MainMenu LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -26,25 +26,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
-if(ANDROID)
-  add_library(MainMenu SHARED
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-  )
-else()
   add_executable(MainMenu
     main.cpp
     homepage.cpp
     homepage.h
-    mainmenu.h
+    #mainmenu.h
     main.ui
     note.h
     note.ui
+    todofile.cpp
+    todofile.h
     note.cpp
-    ui_note.h
-  )
-endif()
-
-target_link_libraries(MainMenu PRIVATE Qt5::Widgets ${CSV_LIBRARY})
+    #ui_note.h
+    )
+add_subdirectory(thirdparty/qtcsv)
+target_link_libraries(MainMenu PRIVATE Qt5::Widgets qtcsv)
