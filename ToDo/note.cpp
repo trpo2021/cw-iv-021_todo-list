@@ -10,7 +10,6 @@
 #include <QStringList>
 
 #include "note.h"
-#include "todofile.h"
 #include "homepage.h"
 Note::Note(QWidget* parent) : QDialog(parent)
 {
@@ -46,29 +45,24 @@ void Note::on_saveButton_clicked()
 
     note_text = textEdit->toPlainText();
     QString filePath = QDir::currentPath() + "/base.csv";
+
     if (redact_state == false){
         created = cdt.toString(Qt::ISODate);
         QStringList notedat;
         notedat << status << deadline_str << prior << created << note_text;
         ToDoFile writer;
-        if(writer.write_csv(filePath,notedat,";","\"") == 0){
+        if(WriteEdit.write_csv(filePath,notedat,";","\"") == 0){
             qDebug()<<"Writing Error";
         }
     }else if(redact_state == true){
-
-        EditProcessor processor;
-        processor.created = created;
-        processor.edStr = status +";"+deadline_str +";"+
+        QStringList notedat;
+        notedat << status << deadline_str << prior << created << note_text;
+        QString edStr = status +";"+deadline_str +";"+
                 prior +";"+created +";"+note_text+"\n";
-        QString filePath = QDir::currentPath() + "/base.csv";
-        if (false == QtCSV::Reader::readToProcessor(filePath, processor))
-            {
-                qDebug() << "Failed to read file";
-                return;
-            }
-
-
-    }
+        if(WriteEdit.edit_csv(filePath,notedat,created,";","\"") ==0){
+            qDebug()<<"CSV Edit error\n";
+        }
+      }
 
     priority->setCurrentIndex(0);
     deadline->setCurrentIndex(0);

@@ -5,7 +5,8 @@
 //#include "homepage.h"
 #include <QDialog>
 #include "qtcsv/reader.h"
-
+#include "todofile.h"
+#include<QDebug>
 class Note : public QDialog, public Ui_Form {
     Q_OBJECT
 public:
@@ -15,6 +16,7 @@ public:
 public slots:
     void redact(QStringList data);
 private:
+    ToDoFile WriteEdit;
     QString created;
     class EditProcessor : public QtCSV::Reader::AbstractProcessor
         {
@@ -27,6 +29,7 @@ private:
                 if (line.contains(created))
                 {
                     line = edStr;
+                    qDebug()<<"here";
                 }
             }
 

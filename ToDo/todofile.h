@@ -10,7 +10,7 @@ class ToDoFile
 public:
     ToDoFile();
     int write_csv(QString filepath,QStringList data,QString sep,QString delim);
-    int edit_csv(QString filepath,QString created,QString ed);
+    int edit_csv(QString filepath,QStringList data,QString created,QString sep,QString delim);
     int read_csv(QString filepath,QStringList readData,QString sep,QString delim);
 };
 
