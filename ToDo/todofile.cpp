@@ -21,7 +21,8 @@ int ToDoFile::write_csv(QString filepath, QStringList data, QString sep, QString
     return 0;
 }
 int ToDoFile::edit_csv(QString filepath, QStringList data, QString created, QString sep, QString delim){
-    QList<QStringList> readData = QtCSV::Reader::readToList(filepath,sep,delim,QTextCodec::codecForName("UTF-8"));
+    QList<QStringList> readData;
+    read_csv(filepath, &readData, sep, delim);
     if (readData.size()==0)
     {
         return 0;
