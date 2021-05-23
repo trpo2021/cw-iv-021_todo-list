@@ -11,6 +11,7 @@ class Homepage : public QDialog, public Ui::mainMenu{
 public:
     Homepage(QWidget *parent = 0);
     ToDoFile Read;
+    QList<QStringList> readData;
 signals:
     void redact_me(QStringList data);
 public slots:
@@ -20,7 +21,7 @@ private:
 private slots:
     void on_searchLine_textChanged();
     void on_create_clicked();
-    void update_table_ui();
+    void update_table_ui(QList<QStringList> readData);
 
 
 };

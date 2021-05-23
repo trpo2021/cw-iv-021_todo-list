@@ -213,6 +213,9 @@
          <height>16777215</height>
         </size>
        </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
        <property name="rowCount">
         <number>0</number>
        </property>

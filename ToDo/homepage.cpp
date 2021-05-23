@@ -11,10 +11,12 @@ Homepage::Homepage(QWidget *parent) : QDialog(parent)
     this->setAttribute(Qt::WA_DeleteOnClose,true);
     time =new QTimer(this);
     table->setEditTriggers(0);
-    update_table_ui();
+    QString filePath = QDir::currentPath() + "/base.csv";
+    Read.read_csv(filePath,&readData,";","\"");
+    update_table_ui(readData);
     connect(table,SIGNAL(cellDoubleClicked(int, int)),this,SLOT(take_info(int, int )));
-    connect(time, SIGNAL(timeout()), this, SLOT(update_table_ui()));
-    time->start(1000);
+    //connect(time, SIGNAL(timeout()), this, SLOT(update_table_ui()));
+    //time->start(1000);
 
 }
 
@@ -50,10 +52,7 @@ void Homepage::take_info(int row,int col){
     this->close();
 
 }
-void Homepage::update_table_ui(){
-    QString filePath = QDir::currentPath() + "/base.csv";
-    QList<QStringList> readData;
-    Read.read_csv(filePath,&readData,";","\"");
+void Homepage::update_table_ui(QList<QStringList> readData){
         for ( int i = 1; i < readData.size(); ++i )
         {
             QString data = readData.at(i).join(";");

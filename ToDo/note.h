@@ -45,8 +45,10 @@ private:
 private slots:
     void on_textEdit_textChanged();
     void on_saveButton_clicked();
+    void on_delButton_clicked();
     void on_deadline_currentIndexChanged(int index);
     void on_backButton_clicked();
+
 
 };
 

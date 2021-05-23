@@ -24,8 +24,10 @@ void Note::on_textEdit_textChanged()
     QString str = textEdit->toPlainText();
     if (str != "") {
         saveButton->setEnabled(true);
+        delButton->setEnabled(true);
     } else {
         saveButton->setEnabled(false);
+        delButton->setEnabled(false);
     }
 }
 void Note::on_saveButton_clicked()
@@ -72,6 +74,18 @@ void Note::on_saveButton_clicked()
     textEdit->setText("");
     saveButton->setEnabled(false);
 
+}
+void Note::on_delButton_clicked(){
+    QString filePath = QDir::currentPath() + "/base.csv";
+    WriteEdit.delete_note(filePath,created,";","\"");
+    priority->setCurrentIndex(0);
+    deadline->setCurrentIndex(0);
+    dead_time->setDateTime(
+                QDateTime::fromString("2000-01-01T00:00:00", Qt::ISODate));
+    dead_time->setEnabled(false);
+    textEdit->setText("");
+    saveButton->setEnabled(false);
+    delButton->setEnabled(false);
 }
 void Note::redact(QStringList data){
     redact_state = true;
