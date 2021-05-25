@@ -22,7 +22,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install Qt
-      uses: jurpel/install-qt-action@v2
+      uses: jurplel/install-qt-action@v2
 
     - name: Configure CMake
       run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ${{github.workspace}}/ToDo
