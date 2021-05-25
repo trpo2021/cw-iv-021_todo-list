@@ -1,7 +1,7 @@
 #include "todofile.h"
 #include "qtcsv/writer.h"
 #include <QDebug>
-ToDoFile::ToDoFile()
+ToDoFile::ToDoFile(QObject *parent) : QObject(parent)
 {
 }
 int ToDoFile::write_csv(QString filepath, QStringList data, QString sep, QString delim){

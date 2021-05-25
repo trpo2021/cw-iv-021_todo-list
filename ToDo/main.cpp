@@ -1,10 +1,14 @@
 #include <QApplication>
-#include "homepage.h"
+#include <QTest>
+#include <iostream>
+#include <cstdlib>
+#include <cstdio>
+#include "todo_test.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    Homepage *dialog = new Homepage;
-    dialog->show();
-    return app.exec();
+    freopen("testing.log", "w", stdout);
+    QApplication a(argc, argv);
+    QTest::qExec(new todo_test, argc, argv);
+    return 0;
 }
