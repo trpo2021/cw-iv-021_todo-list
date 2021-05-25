@@ -11,8 +11,8 @@ public:
 
 private slots:
     void write_csv();
-   /* void edit_csv();
-    void read_csv();
+    void edit_csv();
+    /*void read_csv();
     void delete_csv();*/
 };
 

@@ -25,19 +25,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5Test REQUIRED)
 
   add_executable(MainMenu
-    main.cpp
-    homepage.cpp
-    homepage.h
-    #mainmenu.h
-    main.ui
-    note.h
-    note.ui
     todofile.cpp
     todofile.h
-    note.cpp
+    main.cpp
+    todo_test.cpp
+    todo_test.h
     #ui_note.h
     )
 add_subdirectory(thirdparty/qtcsv)
-target_link_libraries(MainMenu PRIVATE Qt5::Widgets qtcsv)
+target_link_libraries(MainMenu PRIVATE Qt5::Widgets qtcsv Qt5::Test)
