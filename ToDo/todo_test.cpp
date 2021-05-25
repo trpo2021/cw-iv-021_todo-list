@@ -24,3 +24,17 @@ void todo_test::edit_csv()
     QString rewriteData;
     QCOMPARE(be.edit_csv(filePath, readData, rewriteData, ";", "\""), 1);
 }
+
+void todo_test::read_csv(){
+    ToDoFile be;
+    QString filePath = QDir::currentPath() + "/base.csv";
+    QList<QStringList> readData = QtCSV::Reader::readToList (filePath, ";", "\"",QTextCodec::codecForName("UTF-8"));
+    QCOMPARE(be.read_csv(filePath, &readData, ";", "\""), 1);
+}
+
+void todo_test::delete_note(){
+    ToDoFile be;
+    QString filePath = QDir::currentPath() + "/base.csv";
+    QString created;
+    QCOMPARE(be.delete_note(filePath, created, ";", "\""), 1);
+}
