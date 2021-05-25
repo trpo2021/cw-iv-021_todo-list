@@ -22,7 +22,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Configure CMake
-      run: sudo apt install --reinstall xcb && sudo apt install qt5-default && mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ${{github.workspace}}/ToDo
+      run: sudo apt-get install libxcb-xinerama0 && sudo apt install qt5-default && mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ${{github.workspace}}/ToDo
     
     - name: Build&Run
       run: cd build && make && ./MainMenu 
