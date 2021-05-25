@@ -25,4 +25,4 @@ jobs:
       run: sudo apt install qt5-default && mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ${{github.workspace}}/ToDo
     
     - name: Build&Run
-      run: QT_QPA_PLATFORM=minimal go test -v -race && cd build && make && ./MainMenu 
+      run: QT_QPA_PLATFORM=minimal && cd build && make && ./MainMenu 
