@@ -26,7 +26,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
-  add_executable(MainMenu
+  add_executable(ToDo
     main.cpp
     homepage.cpp
     homepage.h
@@ -37,4 +37,4 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
     note.cpp
     #ui_note.h
     )
-target_link_libraries(MainMenu PRIVATE Qt5::Widgets libToDo)
+target_link_libraries(ToDo PRIVATE Qt5::Widgets libToDo)

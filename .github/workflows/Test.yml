@@ -23,9 +23,9 @@ jobs:
 
 
     - name: Configure Qt
-      run:   sudo apt install qt5-default && sudo apt install qtcreator && mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ${{github.workspace}}
+      run:   sudo apt install qt5-default && sudo apt install qtcreator 
     
     - name: Build
-      run: cd build && cmake --build tests --target tests
+      run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ${{github.workspace}} && cmake --build .
     - name: Run
       run: cd build && cd tests && ./tests
