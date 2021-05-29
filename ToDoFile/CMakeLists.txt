@@ -25,7 +25,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
-add_subdirectory(thirdparty/qtcsv)
+#add_subdirectory(thirdparty/qtcsv)
 
   add_library(libToDo SHARED
     todofile.cpp
