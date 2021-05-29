@@ -28,4 +28,4 @@ jobs:
     - name: Build
       run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ${{github.workspace}} && cmake --build .
     - name: Run
-      run: сp bace.csv build/tests/ && cd build && cd tests && ./tests
+      run: сp base.csv build/tests/ && cd build && cd tests && ./tests
