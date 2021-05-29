@@ -29,6 +29,7 @@ add_subdirectory(thirdparty/qtcsv)
 
   add_library(libToDo SHARED
     todofile.cpp
+    todofile.h
     #ui_note.h
     )
   target_link_libraries(libToDo PRIVATE Qt5::Widgets qtcsv)
