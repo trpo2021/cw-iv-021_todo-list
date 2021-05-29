@@ -27,5 +27,5 @@ jobs:
     
     - name: Build
       run: cd build && cmake --build build && cmake --build tests --target tests
-    -name: Run
+    - name: Run
       run: cd build && cd tests && ./tests
