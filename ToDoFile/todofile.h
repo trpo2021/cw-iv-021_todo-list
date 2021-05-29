@@ -1,10 +1,7 @@
 #ifndef TODOFILE_H
 #define TODOFILE_H
-#include <QString>
-#include "thirdparty/qtcsv/stringdata.h"
-#include "thirdparty/qtcsv/variantdata.h"
-#include "thirdparty/qtcsv/writer.h"
-#include "thirdparty/qtcsv/reader.h"
+
+
 class ToDoFile
 {
 public:

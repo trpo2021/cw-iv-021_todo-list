@@ -2,11 +2,9 @@
 #define NOTE_H
 
 #include "ui_note.h"
-//#include "homepage.h"
 #include <QDialog>
-#include "qtcsv/reader.h"
 #include <todofile.h>
-#include<QDebug>
+#include <QDebug>
 class Note : public QDialog, public Ui_Form {
     Q_OBJECT
 public:
@@ -18,27 +16,7 @@ public slots:
 private:
     ToDoFile WriteEdit;
     QString created;
-    class EditProcessor : public QtCSV::Reader::AbstractProcessor
-        {
-        public:
-            QList< QStringList > data;
-            QString created;
-            QString edStr;
-            virtual void preProcessRawLine(QString& line)
-            {
-                if (line.contains(created))
-                {
-                    line = edStr;
-                    qDebug()<<"here";
-                }
-            }
-
-            virtual bool processRowElements(const QStringList& elements)
-            {
-
-                data.push_back(QStringList(elements));
-                return true;
-            }
+    
         };
 
 

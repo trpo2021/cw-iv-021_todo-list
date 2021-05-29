@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(MainMenu LANGUAGES CXX)
+project(ToDo LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -37,5 +37,4 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
     note.cpp
     #ui_note.h
     )
-#add_subdirectory(thirdparty/qtcsv)
 target_link_libraries(MainMenu PRIVATE Qt5::Widgets libToDo)

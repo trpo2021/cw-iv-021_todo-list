@@ -1,6 +1,10 @@
 #include "todofile.h"
-#include "thirdparty/qtcsv/writer.h"
+#include "qtcsv/reader.h"
+#include "qtcsv/stringdata.h"
+#include "qtcsv/variantdata.h"
+#include "qtcsv/writer.h"
 #include <QDebug>
+#include <QString>
 ToDoFile::ToDoFile()
 {
 }
