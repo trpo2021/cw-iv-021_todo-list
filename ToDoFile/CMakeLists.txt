@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(tests LANGUAGES CXX)
+project(libToDo LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -25,13 +25,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt5Test REQUIRED)
+add_subdirectory(thirdparty/qtcsv)
 
-
-  add_executable(tests
-    main.cpp
-    todo_test.cpp
-    todo_test.h
+  add_library(libToDo SHARED
+    todofile.cpp
     #ui_note.h
     )
-target_link_libraries(tests PRIVATE Qt5::Widgets Qt5::Test libToDo )
+  target_link_libraries(libToDo PRIVATE Qt5::Widgets qtcsv)
+

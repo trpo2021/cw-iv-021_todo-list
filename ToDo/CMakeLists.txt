@@ -34,10 +34,8 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
     main.ui
     note.h
     note.ui
-    todofile.cpp
-    todofile.h
     note.cpp
     #ui_note.h
     )
-add_subdirectory(thirdparty/qtcsv)
-target_link_libraries(MainMenu PRIVATE Qt5::Widgets qtcsv)
+#add_subdirectory(thirdparty/qtcsv)
+target_link_libraries(MainMenu PRIVATE Qt5::Widgets libToDo)
