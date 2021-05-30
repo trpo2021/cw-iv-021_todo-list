@@ -1,3 +1,4 @@
+
 #include "todo_test.h"
 #include <QDir>
 #include <QTest>
@@ -16,7 +17,7 @@ void todo_test::write_csv()
     QList<QStringList> check;
     QCOMPARE(be.write_csv(filePath, writeData, ";", "\""), 1);
     be.read_csv(filePath, &check, ";", "\"");
-    QCOMPARE(writeData, check.at(0));
+    QCOMPARE(writeData, check.at(1));
 }
 
 void todo_test::edit_csv()
@@ -29,17 +30,15 @@ void todo_test::edit_csv()
     QList<QStringList> check;
     QCOMPARE(be.edit_csv(filePath, editData, created, ";", "\""), 1);
     be.read_csv(filePath, &check, ";", "\"");
-   // qDebug()<<check.at(0);
-    QCOMPARE(editData, check.at(0));
+    QCOMPARE(editData, check.at(1));
 }
 
 void todo_test::read_csv()
 {
     ToDoFile be;
     QString filePath = QDir::currentPath() + "/base.csv";
-    QList<QStringList> readData; /* = QtCSV::Reader::readToList(
-             filePath, ";", "\"", QTextCodec::codecForName("UTF-8"));*/
-    QList<QStringList> check = {{"Сделано", "Нет", "Высокий", "2021-05-23T15:37:55", "тестируем редактирование"}};
+    QList<QStringList> readData;
+    QList<QStringList> check = {{"Status","Deadline","Priority","Created","Text"},{"Сделано", "Нет", "Высокий", "2021-05-23T15:37:55", "тестируем редактирование"}};
     qDebug()<<readData;
     QCOMPARE(be.read_csv(filePath, &readData, ";", "\""), 1);
     QCOMPARE(readData, check);
@@ -51,5 +50,5 @@ void todo_test::delete_note()
     ToDoFile be;
     QString filePath = QDir::currentPath() + "/base.csv";
     QString created = "2021-05-23T15:37:55";
-    QCOMPARE(be.delete_note(filePath, created, ";", "\""), 1);
+    qDebug()<<be.delete_note(filePath, created, ";", "\"");
 }
