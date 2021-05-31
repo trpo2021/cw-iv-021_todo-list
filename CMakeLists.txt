@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.5)
+project(Compilation)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+include_directories(ToDoFile)
+add_subdirectory(ToDo)
+add_subdirectory(tests)
+add_subdirectory(ToDoFile)
+#add_subdirectory(ToDoFile/thirdparty/qtcsv)

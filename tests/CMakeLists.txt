@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(ToDo LANGUAGES CXX)
+project(tests LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -25,16 +25,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5Test REQUIRED)
 
-  add_executable(ToDo
+
+  add_executable(tests
     main.cpp
-    homepage.cpp
-    homepage.h
-    #mainmenu.h
-    main.ui
-    note.h
-    note.ui
-    note.cpp
+    todo_test.cpp
+    todo_test.h
     #ui_note.h
     )
-target_link_libraries(ToDo PRIVATE Qt5::Widgets libToDo)
+target_link_libraries(tests PRIVATE Qt5::Widgets Qt5::Test libToDo )

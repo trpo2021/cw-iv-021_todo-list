@@ -4,8 +4,7 @@
 #include <QDialog>
 #include <QTimer>
 #include "ui_main.h"
-#include "note.h"
-#include "todofile.h"
+#include <todofile.h>
 class Homepage : public QDialog, public Ui::mainMenu{
     Q_OBJECT
 public:
