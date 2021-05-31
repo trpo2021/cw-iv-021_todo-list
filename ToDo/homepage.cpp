@@ -8,7 +8,7 @@ Homepage::Homepage(QWidget* parent) : QDialog(parent)
     mainMenu::setupUi(this);
     this->setWindowFlags(Qt::WindowTitleHint);
     this->setAttribute(Qt::WA_DeleteOnClose, true);
-    time = new QTimer(this);
+    timer = new QTimer(this);
     table->setEditTriggers(0);
     QString filePath = QDir::currentPath() + "/base.csv";
     Read.read_csv(filePath, &readData, ";", "\"");
@@ -17,8 +17,11 @@ Homepage::Homepage(QWidget* parent) : QDialog(parent)
             SIGNAL(cellDoubleClicked(int, int)),
             this,
             SLOT(take_info(int, int)));
-    // connect(time, SIGNAL(timeout()), this, SLOT(update_table_ui()));
-    // time->start(1000);
+    flags.push_back(time->currentText());
+    flags.push_back(priority->currentText());
+    flags.push_back(status->currentText());
+    connect(timer, SIGNAL(timeout()), this, SLOT(deadlineChecked()));
+    timer->start(2500);
 }
 
 void Homepage::on_searchLine_textChanged()
@@ -69,4 +72,28 @@ void Homepage::update_table_ui(QList<QStringList> readData)
             table->setItem(i - 1, j, cell);
         }
     }
+}
+
+void Homepage::deadlineChecked(){
+    QVector<QString> quant = {"Дедлайн"};
+    readData = Read.sort(quant, readData);
+    update_table_ui(readData);
+}
+
+void Homepage::on_time_currentIndexChanged(int index){
+    flags[0] = time->currentText();
+    readData = Read.sort(flags,readData);
+    update_table_ui(readData);
+}
+
+void Homepage::on_priority_currentIndexChanged(int index){
+    flags[1] = priority->currentText();
+    readData = Read.sort(flags,readData);
+    update_table_ui(readData);
+}
+
+void Homepage::on_status_currentIndexChanged(int index){
+    flags[2] = status->currentText();
+    readData = Read.sort(flags,readData);
+    update_table_ui(readData);
 }

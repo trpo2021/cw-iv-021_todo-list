@@ -11,18 +11,23 @@ public:
     Homepage(QWidget *parent = 0);
     ToDoFile Read;
     QList<QStringList> readData;
+    QVector<QString> flags;
+
 signals:
     void redact_me(QStringList data);
 public slots:
     void take_info(int row,int col);
 private:
-    QTimer *time;
+    QTimer *timer;
+
 private slots:
     void on_searchLine_textChanged();
     void on_create_clicked();
     void update_table_ui(QList<QStringList> readData);
-
-
+    void deadlineChecked();
+    void on_priority_currentIndexChanged(int index);
+    void on_time_currentIndexChanged(int index);
+    void on_status_currentIndexChanged(int index);
 };
 
 #endif // HOMEPAGE_H

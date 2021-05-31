@@ -20,5 +20,10 @@ public:
             QString delim);
     int
     delete_note(QString filepath, QString created, QString sep, QString delim);
+    QList<QStringList> sort (QVector<QString> flags,QList<QStringList> data);
+    QList<QStringList> sortByTime(QString flag,QList<QStringList> data);
+    QList<QStringList> sortByStr(QString flag,QList<QStringList> data);
+
+
 };
 #endif // TODOFILE_H
