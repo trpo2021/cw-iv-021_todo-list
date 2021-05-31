@@ -38,11 +38,10 @@ void todo_test::read_csv()
     ToDoFile be;
     QString filePath = QDir::currentPath() + "/base.csv";
     QList<QStringList> readData;
-    QList<QStringList> check = {{"Status","Deadline","Priority","Created","Text"},{"Сделано", "Нет", "Высокий", "2021-05-23T15:37:55", "тестируем редактирование"}};
-    qDebug()<<readData;
+    QList<QStringList> check = {{"Status","Deadline","Priority","Created","Text"},
+                                {"Сделано", "Нет", "Высокий", "2021-05-23T15:37:55", "тестируем редактирование"}};
     QCOMPARE(be.read_csv(filePath, &readData, ";", "\""), 1);
     QCOMPARE(readData, check);
-    qDebug()<<readData;
 }
 
 void todo_test::delete_note()
@@ -50,5 +49,5 @@ void todo_test::delete_note()
     ToDoFile be;
     QString filePath = QDir::currentPath() + "/base.csv";
     QString created = "2021-05-23T15:37:55";
-    qDebug()<<be.delete_note(filePath, created, ";", "\"");
+    QCOMPARE(be.delete_note(filePath, created, ";", "\""),1);
 }
