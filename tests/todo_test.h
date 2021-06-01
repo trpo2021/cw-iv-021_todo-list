@@ -3,11 +3,10 @@
 
 #include <QObject>
 
-class todo_test : public QObject
-{
+class todo_test : public QObject {
     Q_OBJECT
 public:
-    todo_test(QObject *parent = 0);
+    todo_test(QObject* parent = 0);
 
 private slots:
     void write_csv();
@@ -22,4 +21,4 @@ private slots:
     void sortByDeadline();
 };
 
-#endif // TODO_TEST_H
+#endif

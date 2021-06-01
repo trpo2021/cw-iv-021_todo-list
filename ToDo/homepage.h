@@ -1,14 +1,14 @@
 #ifndef HOMEPAGE_H
 #define HOMEPAGE_H
 
+#include "ui_main.h"
 #include <QDialog>
 #include <QTimer>
-#include "ui_main.h"
 #include <todofile.h>
-class Homepage : public QDialog, public Ui::mainMenu{
+class Homepage : public QDialog, public Ui::mainMenu {
     Q_OBJECT
 public:
-    Homepage(QWidget *parent = 0);
+    Homepage(QWidget* parent = 0);
     ToDoFile Read;
     QList<QStringList> readData;
     QVector<QString> flags;
@@ -16,9 +16,10 @@ public:
 signals:
     void redact_me(QStringList data);
 public slots:
-    void take_info(int row,int col);
+    void take_info(int row, int col);
+
 private:
-    QTimer *timer;
+    QTimer* timer;
 
 private slots:
     void on_searchLine_textChanged();
@@ -30,4 +31,4 @@ private slots:
     void on_status_currentIndexChanged(int index);
 };
 
-#endif // HOMEPAGE_H
+#endif

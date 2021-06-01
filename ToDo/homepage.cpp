@@ -76,25 +76,29 @@ void Homepage::update_table_ui(QList<QStringList> readData)
     }
 }
 
-void Homepage::deadlineChecked(){
+void Homepage::deadlineChecked()
+{
     readData = Read.sortByDeadline(readData);
     update_table_ui(readData);
 }
 
-void Homepage::on_time_currentIndexChanged(int index){
+void Homepage::on_time_currentIndexChanged(int index)
+{
     flags[0] = time->currentText();
-    readData = Read.sort(flags,readData);
+    readData = Read.sort(flags, readData);
     update_table_ui(readData);
 }
 
-void Homepage::on_priority_currentIndexChanged(int index){
+void Homepage::on_priority_currentIndexChanged(int index)
+{
     flags[1] = priority->currentText();
-    readData = Read.sort(flags,readData);
+    readData = Read.sort(flags, readData);
     update_table_ui(readData);
 }
 
-void Homepage::on_status_currentIndexChanged(int index){
+void Homepage::on_status_currentIndexChanged(int index)
+{
     flags[2] = status->currentText();
-    readData = Read.sort(flags,readData);
+    readData = Read.sort(flags, readData);
     update_table_ui(readData);
 }
