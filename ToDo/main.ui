@@ -212,7 +212,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0" colspan="2">
+     <item row="0" column="0" colspan="2" alignment="Qt::AlignHCenter">
       <widget class="QTableWidget" name="table">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
