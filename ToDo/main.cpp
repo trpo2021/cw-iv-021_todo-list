@@ -1,10 +1,10 @@
-#include <QApplication>
 #include "homepage.h"
+#include <QApplication>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
-    Homepage *dialog = new Homepage;
+    Homepage* dialog = new Homepage;
     dialog->show();
     return app.exec();
 }

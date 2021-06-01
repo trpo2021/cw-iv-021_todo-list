@@ -2,9 +2,9 @@ name: CMake
 
 on:
   push:
-    branches: [ main ]
+    branches: [ issue7 ]
   pull_request:
-    branches: [ main ]
+    branches: [ issue7 ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -23,8 +23,8 @@ jobs:
 
 
     - name: Configure Qt
-      run:   sudo apt install qt5-default && sudo apt install qtcreator 
-    
+      run:   sudo apt install qt5-default && sudo apt install qtcreator
+
     - name: Build
       run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ${{github.workspace}} && cmake --build .
     - name: Run

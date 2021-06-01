@@ -26,4 +26,4 @@ private slots:
     void on_backButton_clicked();
 };
 
-#endif // NOTE_H
+#endif
