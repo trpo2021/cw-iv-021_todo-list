@@ -77,8 +77,7 @@ void Homepage::update_table_ui(QList<QStringList> readData)
 }
 
 void Homepage::deadlineChecked(){
-    QVector<QString> quant = {"Дедлайн"};
-    readData = Read.sortByDeadline("Дедлайн", readData);
+    readData = Read.sortByDeadline(readData);
     update_table_ui(readData);
 }
 

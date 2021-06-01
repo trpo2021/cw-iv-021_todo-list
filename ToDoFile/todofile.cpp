@@ -115,7 +115,7 @@ int ToDoFile::delete_note(
     return  data;
 } */
 
-bool IsContained(QVector<QString> flags,QStringList data){
+bool ToDoFile::IsContained(QVector<QString> flags,QStringList data){
     bool check = true;
     for (int i = 1; i < flags.size(); i++){
         if (data.contains(flags[i])){
@@ -172,23 +172,21 @@ QList <QStringList> ToDoFile::sortByStr(QVector <QString> flag,QList<QStringList
     return data;
 }
 
-QList <QStringList> ToDoFile::sortByDeadline(QString flag, QList<QStringList> data){
+QList <QStringList> ToDoFile::sortByDeadline(QList<QStringList> data){
     QDateTime cdt1, cdt2;
 
     for(int i = 1; i < data.size(); i++){
        for(int j = 1; j < data.size() - 1; j ++ ){
-           if (flag == "Дедлайн"){
-                if ((data[j][1] == "Нет")&&(data[j+1][1] != "Нет")){
+            if ((data[j][1] == "Нет")&&(data[j+1][1] != "Нет")){
+                data[j].swap(data[j+1]);
+            }
+            if ((data[j][1] != "Нет")&&(data[j+1][1] != "Нет")){
+                cdt1 = QDateTime::fromString(data[j][1], Qt::ISODate);
+                cdt2 = QDateTime::fromString(data[j+1][1], Qt::ISODate);
+                if ((QDateTime::currentDateTime().daysTo(cdt2) < QDateTime::currentDateTime().daysTo(cdt1))&&(QDateTime::currentDateTime().daysTo(cdt2) < 7)){
                     data[j].swap(data[j+1]);
                 }
-                if ((data[j][1] != "Нет")&&(data[j+1][1] != "Нет")){
-                    cdt1 = QDateTime::fromString(data[j][1], Qt::ISODate);
-                    cdt2 = QDateTime::fromString(data[j+1][1], Qt::ISODate);
-                    if ((QDateTime::currentDateTime().daysTo(cdt2) < QDateTime::currentDateTime().daysTo(cdt1))&&(QDateTime::currentDateTime().daysTo(cdt2) < 7)){
-                        data[j].swap(data[j+1]);
-                    }
-                }
-           }
+             }
         }
       }
     return  data;

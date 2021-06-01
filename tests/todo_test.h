@@ -14,6 +14,12 @@ private slots:
     void edit_csv();
     void read_csv();
     void delete_note();
+
+    void IsContained();
+    void createSort();
+    void sort();
+    void sortByStr();
+    void sortByDeadline();
 };
 
 #endif // TODO_TEST_H
