@@ -104,7 +104,7 @@ int ToDoFile::delete_note(
     return 1;
 }
 
-QList <QStringList> ToDoFile::sort(QVector<QString> flags,QList<QStringList> data){
+/*QList <QStringList> ToDoFile::sort(QVector<QString> flags,QList<QStringList> data){
     for (int i = 0; i < flags.size();i++){
         if (((flags[i] == "Раньше")||(flags[i] == "Позже"))||(flags[i] == "Дедлайн")){
             data = sortByTime(flags[i],data);
@@ -113,37 +113,71 @@ QList <QStringList> ToDoFile::sort(QVector<QString> flags,QList<QStringList> dat
         }
     }
     return  data;
+} */
+
+bool IsContained(QVector<QString> flags,QStringList data){
+    bool check = true;
+    for (int i = 1; i < flags.size(); i++){
+        if (data.contains(flags[i])){
+            check = true;
+        } else{
+            check = false;
+            return check;
+        }
+    }
+    return check;
 }
-QList <QStringList> ToDoFile::sortByStr(QString flag,QList<QStringList> data){
+
+bool ToDoFile::createSort (QString flag, QString str1, QString str2){
+    QDateTime cdt1, cdt2;
+
+    if (flag == "Раньше"){
+        cdt1 = QDateTime::fromString(str1, Qt::ISODate);
+        cdt2 = QDateTime::fromString(str2, Qt::ISODate);
+        if (cdt1 > cdt2){
+          return true;
+      }
+    } else if (flag == "Позже"){
+        cdt1 = QDateTime::fromString(str1, Qt::ISODate);
+        cdt2 = QDateTime::fromString(str2, Qt::ISODate);
+        if (cdt1 < cdt2){
+          return true;
+       }
+    }
+    return false;
+}
+
+QList <QStringList> ToDoFile::sort(QVector<QString> flags,QList<QStringList> data){
+    for (int i = flags.size() - 1; i > 0; i--){
+        data = sortByStr(flags, data);
+        flags.pop_back();
+    }
+    return data;
+}
+
+QList <QStringList> ToDoFile::sortByStr(QVector <QString> flag,QList<QStringList> data){
     for(int i = 1; i < data.size(); i++){
         for(int j = 1; j < data.size() - 1; j ++ ){
-            if (data[j+1].contains(flag)&&(!(data[j].contains(flag)))){
+            if (IsContained(flag, data[j+1])&&(!(IsContained(flag, data[j])))){
                 data[j].swap(data[j+1]);
+            } else if ((!(IsContained(flag, data[j+1])))&&(IsContained(flag, data[j]))){
+                continue;
+            } else{
+                if (createSort(flag[0], data[j][3], data[j+1][3])){
+                    data[j].swap(data[j+1]);
+                }
             }
         }
     }
-    return  data;
+    return data;
 }
-QList <QStringList> ToDoFile::sortByTime(QString flag, QList<QStringList> data){
-    QDateTime now = QDateTime::currentDateTime();
+
+QList <QStringList> ToDoFile::sortByDeadline(QString flag, QList<QStringList> data){
     QDateTime cdt1, cdt2;
 
     for(int i = 1; i < data.size(); i++){
        for(int j = 1; j < data.size() - 1; j ++ ){
-           if (flag == "Раньше"){
-               cdt1 = QDateTime::fromString(data[j][3], Qt::ISODate);
-               cdt2 = QDateTime::fromString(data[j+1][3], Qt::ISODate);
-               if (cdt1 > cdt2){
-                 data[j].swap(data[j+1]);
-             }
-           } else if (flag == "Позже"){
-               cdt1 = QDateTime::fromString(data[j][3], Qt::ISODate);
-               cdt2 = QDateTime::fromString(data[j+1][3], Qt::ISODate);
-               if (cdt1 < cdt2){
-                 data[j].swap(data[j+1]);
-              }
-           }
-           else if (flag == "Дедлайн"){
+           if (flag == "Дедлайн"){
                 if ((data[j][1] == "Нет")&&(data[j+1][1] != "Нет")){
                     data[j].swap(data[j+1]);
                 }

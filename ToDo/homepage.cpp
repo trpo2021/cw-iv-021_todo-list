@@ -12,7 +12,7 @@ Homepage::Homepage(QWidget* parent) : QDialog(parent)
     table->setEditTriggers(0);
     QString filePath = QDir::currentPath() + "/base.csv";
     Read.read_csv(filePath, &readData, ";", "\"");
-    update_table_ui(readData);
+
     connect(table,
             SIGNAL(cellDoubleClicked(int, int)),
             this,
@@ -20,6 +20,8 @@ Homepage::Homepage(QWidget* parent) : QDialog(parent)
     flags.push_back(time->currentText());
     flags.push_back(priority->currentText());
     flags.push_back(status->currentText());
+    readData = Read.sort(flags, readData);
+    update_table_ui(readData);
     connect(timer, SIGNAL(timeout()), this, SLOT(deadlineChecked()));
     timer->start(2500);
 }
@@ -76,7 +78,7 @@ void Homepage::update_table_ui(QList<QStringList> readData)
 
 void Homepage::deadlineChecked(){
     QVector<QString> quant = {"Дедлайн"};
-    readData = Read.sort(quant, readData);
+    readData = Read.sortByDeadline("Дедлайн", readData);
     update_table_ui(readData);
 }
 
